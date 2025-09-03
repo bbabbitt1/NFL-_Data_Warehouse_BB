@@ -19,3 +19,31 @@ models:
             tests:
                 - unique
                 - not_null
+
+    - name: customer
+      description: "dbt training walk through"
+      columns:
+          - name: customer_id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: PHONE
+            tests:
+                - unique
+                - not_null
+    - name: customer_view
+      columns:
+          - name: customer_id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+                
+
+sources:
+  - name: customer
+    database: DBT_DB
+    schema: PUBLIC
+    tables:
+      - name: CUSTOMER_SRC
