@@ -19,3 +19,61 @@ models:
             tests:
                 - unique
                 - not_null
+
+    - name: customer
+      description: "dbt training walk through"
+      columns:
+          - name: customer_id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: PHONE
+            tests:
+                - unique
+                - not_null
+    - name: customer_view
+      columns:
+          - name: customer_id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+    - name: inc_example
+      description: "Example of incremental Refreshes in DBT"
+      columns:
+          - name: id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+    - name: dim_teams
+      description: "SCD type 1 example"
+      columns:
+          - name: team_id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null            
+
+sources:
+  - name: customer
+    database: DBT_DB
+    schema: PUBLIC
+    tables:
+      - name: CUSTOMER_SRC
+  - name: inc_example
+    database: DBT_DB
+    schema: PUBLIC
+    tables:
+      - name: example_src
+  - name: dim_teams
+    database: DBT_DB
+    schema: PUBLIC
+    tables:
+      - name: src_team
+  - name: players
+    database: DBT_DB
+    schema: PUBLIC
+    tables:
+      - name: src_players
